@@ -5,15 +5,12 @@
 package com.hopper.initializer.creator.java;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
-import java.nio.file.Path;
-import java.util.Map;
-
+import com.hopper.initializer.FileProcessor;
 import com.hopper.initializer.creator.FileCreationOrder;
+import com.hopper.initializer.creator.FileCreator;
 import com.hopper.initializer.model.ProjectCreation;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,19 +18,16 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import com.hopper.initializer.FileProcessor;
-import com.hopper.initializer.creator.FileCreator;
+import java.nio.file.Path;
 
 public class PackageInfoCreatorTest {
     
     @Mock
     private FileProcessor fileProcessor;
+    
     @Captor
     private ArgumentCaptor<Path> pathCaptor;
-    @Captor
-    private ArgumentCaptor<Map<String,Object>> mapCaptor;
-    
+
     private FileCreator<ProjectCreation> creator;
     
     @Before

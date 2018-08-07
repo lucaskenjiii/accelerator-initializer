@@ -5,18 +5,14 @@
 package com.hopper.initializer.zip;
 
 import static java.lang.String.format;
-
+import com.hopper.exception.InitializerException;
+import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import com.hopper.exception.InitializerException;
-import org.springframework.stereotype.Component;
 
 @Component
 public class ZipFileImpl implements ZipFile {
@@ -59,44 +55,5 @@ public class ZipFileImpl implements ZipFile {
         } catch (IOException e) {
             throw new InitializerException("It was not possible to zip project", e);
         }
-    }
-    
-    private static char cleanChar(char aChar) {
-
-        // 0 - 9
-        for (int i = 48; i < 58; ++i) {
-            if (aChar == i) {
-                return (char) i;
-            }
-        }
-
-        // 'A' - 'Z'
-        for (int i = 65; i < 91; ++i) {
-            if (aChar == i) {
-                return (char) i;
-            }
-        }
-
-        // 'a' - 'z'
-        for (int i = 97; i < 123; ++i) {
-            if (aChar == i) {
-                return (char) i;
-            }
-        }
-
-        // other valid characters
-        switch (aChar) {
-            case '/':
-                return '/';
-            case '.':
-                return '.';
-            case '-':
-                return '-';
-            case '_':
-                return '_';
-            case ' ':
-                return ' ';
-        }
-        return '%';
     }
 }
